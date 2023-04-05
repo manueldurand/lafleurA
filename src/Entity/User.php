@@ -10,7 +10,6 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
-use Gedmo\Mapping\Annotation as Gedmo;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[UniqueEntity(fields: ['email'], message: 'Cette adresse email est déjà utilisée', repositoryMethod: 'findUserByEmail')]
@@ -50,11 +49,6 @@ abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $lastLoggedAt = null;
-
-    #[Assert\NotBlank(groups: ['CreatePlainPassword'])]
-    #[Assert\Regex(pattern: '/^(?=.*[^a-z0-9])(?=.*[0-9])(?=.*[a-z]).{8,}$/i', message:'Votre mot de passe doit contenir au moins 8 caractères, 1 chiffre, 1 lettre et 1 caractère spécial', groups: ['CreatePlainPassword', 'EditPlainPassword'])]
-    // https://regex101.com/r/PxnGfh/1
-    private ?string $plainPassword = null;
 
     #[ORM\Column(length: 255)]
     private ?string $firstname = null;
@@ -142,7 +136,7 @@ abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function eraseCredentials()
     {
         // If you store any temporary, sensitive data on the user, clear it here
-        // $this->plainPassword = null;
+//        $this->plainPassword = null;
     }
 
     public function getGender(): ?string

@@ -1,0 +1,17 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Tableau de bord{% endblock %}
+
+{% block stylesheets %}
+    <link href="{{ asset('metronic/assets/plugins/custom/datatables/datatables.bundle.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('metronic/assets/plugins/custom/vis-timeline/vis-timeline.bundle.css') }}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block toolbar %}
+    {% include 'admin/_layout/_toolbar/toolbar.html.twig' with {'title': 'Mon compte'} %}
+{% endblock %}
+
+{% block body %}
+    {% include 'admin/profile/_components/_details.html.twig' with {'form': detailForm} %}
+    {% include 'admin/profile/_components/_passwords.html.twig'  with {'form': passwordForm} %}
+{% endblock %}
