@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="description" content="">
 
-        <title>{% block title %}{{ app_name }}{% endblock %}</title>
+        <title>{{ app_name }} | {% block title %}{% endblock %}</title>
 
         <link rel="icon" href="{{asset('img/favicon.png')}}">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
@@ -37,17 +37,20 @@
                             <!-- TODO::TOOLBAR ? -->
                             <div id="kt_app_content" class="app-content flex-column-fluid">
                                 <!--begin::Content container-->
-                                <div id="kt_app_content_container" class="app-container container-xxl">
+                                <div id="kt_app_content_container" class="app-container container-xxl my-10">
                                     {% block body %}{% endblock %}
                                 </div>
                             </div>
                         </div>
+                        {% include "admin/_layout/_footer/footer.html.twig" %}
                     </div>
                 </div>
             </div>
         </div>
 
         {% block modals %}{% endblock %}
+
+        <script>var hostUrl = "assets/";</script>
 
         {# jQuery 3.6.0 #}
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

@@ -17,6 +17,18 @@ doctrine:
                 prefix: 'App\Entity'
                 alias: App
 
+        dql:
+            datetime_functions:
+                date: DoctrineExtensions\Query\Mysql\Date
+                date_format: DoctrineExtensions\Query\Mysql\DateFormat
+                day_of_week: DoctrineExtensions\Query\Mysql\DayOfWeek
+            string_functions:
+                cast: DoctrineExtensions\Query\Mysql\Cast
+                acos: DoctrineExtensions\Query\Mysql\Acos
+                cos: DoctrineExtensions\Query\Mysql\Cos
+                sin: DoctrineExtensions\Query\Mysql\Sin
+                radians: DoctrineExtensions\Query\Mysql\Radians
+
 when@test:
     doctrine:
         dbal:
