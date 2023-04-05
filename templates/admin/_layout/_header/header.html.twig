@@ -1,0 +1,19 @@
+<div id="kt_app_header" class="app-header">
+    <!--begin::Header container-->
+    <div class="app-container container-fluid d-flex align-items-stretch justify-content-between" id="kt_app_header_container">
+
+        {% include 'admin/_layout/_header/_mobile-sidebar-toggle.html.twig' %}
+        {% include 'admin/_layout/_header/_mobile-logo.html.twig' %}
+
+        <div class="d-flex align-items-stretch justify-content-between flex-lg-grow-1" id="kt_app_header_wrapper">
+            <div class="app-header-menu app-header-mobile-drawer align-items-stretch" data-kt-drawer="true" data-kt-drawer-name="app-header-menu" data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true" data-kt-drawer-width="250px" data-kt-drawer-direction="end" data-kt-drawer-toggle="#kt_app_header_menu_toggle" data-kt-swapper="true" data-kt-swapper-mode="{default: 'append', lg: 'prepend'}" data-kt-swapper-parent="{default: '#kt_app_body', lg: '#kt_app_header_wrapper'}">
+            </div>
+
+            <div class="app-navbar flex-shrink-0">
+                {% include 'admin/_layout/_header/_theme-mode.html.twig' %}
+                {% include 'admin/_layout/_header/_user-account-menu.html.twig' %}
+            </div>
+        </div>
+    </div>
+    <!--end::Header container-->
+</div>
