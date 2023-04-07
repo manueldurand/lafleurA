@@ -10,6 +10,7 @@ use Knp\Bundle\TimeBundle\DateTimeFormatter;
 use Omines\DataTablesBundle\Adapter\Doctrine\FetchJoinORMAdapter;
 use Omines\DataTablesBundle\Adapter\Doctrine\ORM\SearchCriteriaProvider;
 use Omines\DataTablesBundle\Adapter\Doctrine\ORMAdapter;
+use Omines\DataTablesBundle\Column\AbstractColumn;
 use Omines\DataTablesBundle\Column\BoolColumn;
 use Omines\DataTablesBundle\Column\DateTimeColumn;
 use Omines\DataTablesBundle\Column\TextColumn;
