@@ -1,0 +1,58 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Ajouter un utilisateur{% endblock %}
+
+{% block stylesheets %}
+{% endblock %}
+
+{%
+    set breadcrumb = {
+        'Accueil': path('app_admin_dashboard'),
+        'Utilisateurs': path('app_admin_users_list'),
+        'Nouvel utilisateur': null,
+    }
+%}
+
+{% block toolbar %}
+    {% include 'admin/_layout/_toolbar/toolbar.html.twig' with {'title': 'Ajouter un utilisateur', 'breadcrumb': breadcrumb} %}
+{% endblock %}
+
+{% block body %}
+    <div class="card">
+        {{ form_start(form) }}
+        <div class="card-body border-top p-9">
+            <div class="row mb-6">
+                <label class="col-lg-4 col-form-label fw-semibold fs-6">{{ form_label(form.email) }}</label>
+                <div class="col-lg-8 d-flex flex-column justify-content-center fv-row">
+                    {{ form_widget(form.email) }}
+                </div>
+            </div>
+            <div class="row mb-6">
+                <label class="col-lg-4 col-form-label fw-semibold fs-6">{{ form_label(form.firstname) }}</label>
+                <div class="col-lg-8 fv-row">
+                    {{ form_widget(form.firstname) }}
+                </div>
+            </div>
+            <div class="row mb-6">
+                <label class="col-lg-4 col-form-label fw-semibold fs-6">{{ form_label(form.lastname) }}</label>
+                <div class="col-lg-8 fv-row">
+                    {{ form_widget(form.lastname) }}
+                </div>
+            </div>
+            <div class="row mb-6">
+                <label class="col-lg-4 col-form-label fw-semibold fs-6">{{ form_label(form.plainPassword) }}</label>
+                <div class="col-lg-8 fv-row">
+                    {{ form_widget(form.plainPassword) }}
+                </div>
+            </div>
+        </div>
+        <div class="card-footer d-flex justify-content-end py-6 px-9">
+            <a href="{{ path('app_admin_users_list') }}" class="btn btn-light btn-active-dark me-2">Annuler et revenir en arrière</a>
+            <a href="{{ path('app_admin_users_list') }}" class="btn btn-primary" id="kt_account_profile_details_submit">Créer l'utilisateur</a>
+        </div>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+{% endblock %}

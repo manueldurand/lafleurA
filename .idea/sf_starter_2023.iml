@@ -137,6 +137,9 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/fzaninotto/faker" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/gedmo/doctrine-extensions" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/stof/doctrine-extensions-bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/knplabs/knp-time-bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/omines/datatables-bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/templating" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

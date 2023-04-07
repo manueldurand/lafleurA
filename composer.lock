@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "24846bda2b4f2dcc54795967882b3126",
+    "content-hash": "919264c248f0d32a5d54cd871215a5a6",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -1618,6 +1618,79 @@
             "time": "2023-02-20T19:24:07+00:00"
         },
         {
+            "name": "knplabs/knp-time-bundle",
+            "version": "v1.20.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/KnpLabs/KnpTimeBundle.git",
+                "reference": "81ffad54d91f62528466267fd4a2fb8a5a0335f4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/KnpLabs/KnpTimeBundle/zipball/81ffad54d91f62528466267fd4a2fb8a5a0335f4",
+                "reference": "81ffad54d91f62528466267fd4a2fb8a5a0335f4",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2.5",
+                "symfony/config": "^5.4|^6.0",
+                "symfony/dependency-injection": "^5.4|^6.0",
+                "symfony/templating": "^5.4|^6.0",
+                "symfony/translation": "^5.4|^6.0"
+            },
+            "conflict": {
+                "phpunit/phpunit": "<8.0"
+            },
+            "require-dev": {
+                "symfony/framework-bundle": "^5.4|^6.0",
+                "symfony/phpunit-bridge": "^5.4|^6.0",
+                "symfony/twig-bundle": "^5.4|^6.0"
+            },
+            "suggest": {
+                "symfony/twig-bundle": "to use the Twig `time_diff()` function or `|ago` filter"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Knp\\Bundle\\TimeBundle\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "KnpLabs Team",
+                    "homepage": "http://knplabs.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "http://github.com/KnpLabs/KnpTimeBundle/contributors"
+                }
+            ],
+            "description": "Making your dates look sensible and descriptive",
+            "homepage": "http://github.com/KnpLabs/KnpTimeBundle",
+            "keywords": [
+                "bundle",
+                "date",
+                "descriptive time",
+                "knp",
+                "knplabs",
+                "time"
+            ],
+            "support": {
+                "issues": "https://github.com/KnpLabs/KnpTimeBundle/issues",
+                "source": "https://github.com/KnpLabs/KnpTimeBundle/tree/v1.20.0"
+            },
+            "time": "2022-10-11T15:32:58+00:00"
+        },
+        {
             "name": "monolog/monolog",
             "version": "3.3.1",
             "source": {
@@ -1717,6 +1790,110 @@
                 }
             ],
             "time": "2023-02-06T13:46:10+00:00"
+        },
+        {
+            "name": "omines/datatables-bundle",
+            "version": "0.7.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/omines/datatables-bundle.git",
+                "reference": "2174bebee71eabaccb849ab43308c2afeea447df"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/omines/datatables-bundle/zipball/2174bebee71eabaccb849ab43308c2afeea447df",
+                "reference": "2174bebee71eabaccb849ab43308c2afeea447df",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.0",
+                "symfony/event-dispatcher": "^5.4|^6.0",
+                "symfony/framework-bundle": "^5.4|^6.0",
+                "symfony/options-resolver": "^5.4|^6.0",
+                "symfony/property-access": "^5.4|^6.0",
+                "symfony/translation": "^5.4|^6.0"
+            },
+            "require-dev": {
+                "doctrine/common": "^2.6|^3.3",
+                "doctrine/doctrine-bundle": "^2.7|^3.0",
+                "doctrine/orm": "^2.13.1",
+                "doctrine/persistence": "^2.0|^3.0.3",
+                "ext-curl": "*",
+                "ext-json": "*",
+                "ext-pdo_sqlite": "*",
+                "ext-zip": "*",
+                "friendsofphp/php-cs-fixer": "^3.9.5",
+                "mongodb/mongodb": "^1.12",
+                "ocramius/package-versions": "^2.5",
+                "phpoffice/phpspreadsheet": "^1.24.1",
+                "phpstan/extension-installer": "^1.1",
+                "phpstan/phpstan": "^1.8.2",
+                "phpstan/phpstan-doctrine": "^1.3.12",
+                "phpstan/phpstan-phpunit": "^1.1",
+                "phpstan/phpstan-symfony": "^1.2.9",
+                "ruflin/elastica": "^6.0|^7.2",
+                "symfony/browser-kit": "^5.4|^6.1.3",
+                "symfony/css-selector": "^5.4|^6.1.3",
+                "symfony/dom-crawler": "^5.4|^6.1.3",
+                "symfony/intl": "^5.4|^6.1",
+                "symfony/mime": "^5.4|^6.1.3",
+                "symfony/phpunit-bridge": "^5.4|^6.1.3",
+                "symfony/twig-bundle": "^5.4|^6.1.1",
+                "symfony/var-dumper": "^5.4|^6.1.3",
+                "symfony/yaml": "^5.4|^6.1.3"
+            },
+            "suggest": {
+                "doctrine/doctrine-bundle": "For integrated access to Doctrine object managers",
+                "doctrine/orm": "For full automated integration with Doctrine entities",
+                "mongodb/mongodb": "For integration with MongoDB collections",
+                "phpoffice/phpspreadsheet": "To export the data from DataTables to Excel",
+                "ruflin/elastica": "For integration with Elasticsearch indexes",
+                "symfony/twig-bundle": "To use default Twig based rendering and TwigColumn"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.7-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Omines\\DataTablesBundle\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Robbert Beesems",
+                    "email": "robbert.beesems@omines.com",
+                    "homepage": "https://omines.nl/"
+                },
+                {
+                    "name": "Niels Keurentjes",
+                    "email": "niels.keurentjes@omines.com",
+                    "homepage": "https://omines.nl/"
+                }
+            ],
+            "description": "Symfony DataTables Bundle with native Doctrine ORM, Elastica and MongoDB support",
+            "keywords": [
+                "bundle",
+                "datatable",
+                "datatables",
+                "doctrine",
+                "elastica",
+                "jquery",
+                "mongodb",
+                "orm",
+                "symfony"
+            ],
+            "support": {
+                "issues": "https://github.com/omines/datatables-bundle/issues",
+                "source": "https://github.com/omines/datatables-bundle/tree/0.7.1"
+            },
+            "time": "2022-12-01T12:54:17+00:00"
         },
         {
             "name": "phpdocumentor/reflection-common",
@@ -6485,6 +6662,74 @@
                 }
             ],
             "time": "2023-03-20T16:06:02+00:00"
+        },
+        {
+            "name": "symfony/templating",
+            "version": "v6.2.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/templating.git",
+                "reference": "25662be9cec98a2486487eca230a081ffa1a7832"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/templating/zipball/25662be9cec98a2486487eca230a081ffa1a7832",
+                "reference": "25662be9cec98a2486487eca230a081ffa1a7832",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.1",
+                "symfony/polyfill-ctype": "~1.8"
+            },
+            "require-dev": {
+                "psr/log": "^1|^2|^3"
+            },
+            "suggest": {
+                "psr/log-implementation": "For using debug logging in loaders"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Templating\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Provides all the tools needed to build any kind of template system",
+            "homepage": "https://symfony.com",
+            "support": {
+                "source": "https://github.com/symfony/templating/tree/v6.2.7"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2023-02-14T08:44:56+00:00"
         },
         {
             "name": "symfony/translation",

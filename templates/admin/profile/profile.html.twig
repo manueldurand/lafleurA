@@ -7,8 +7,15 @@
     <link href="{{ asset('metronic/assets/plugins/custom/vis-timeline/vis-timeline.bundle.css') }}" rel="stylesheet" type="text/css" />
 {% endblock %}
 
+{%
+    set breadcrumb = {
+    'Accueil': path('app_admin_dashboard'),
+    'Mon compte': null,
+}
+%}
+
 {% block toolbar %}
-    {% include 'admin/_layout/_toolbar/toolbar.html.twig' with {'title': 'Mon compte'} %}
+    {% include 'admin/_layout/_toolbar/toolbar.html.twig' with {'title': 'Mon compte', 'breadcrumb': breadcrumb} %}
 {% endblock %}
 
 {% block body %}

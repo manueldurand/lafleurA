@@ -1,0 +1,10 @@
+<table id="{{ datatable.name }}" class="{% if className is defined and className is not empty %}{{ className }}{% endif %}">
+    <thead>
+    <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
+        {% for column in datatable.columns %}
+            <th class="min-w-{{ loop.last ? '70px text-end' : '125px' }}">{{ column.label }}</th>
+        {% endfor %}
+    </tr>
+    </thead>
+    <tbody class="fw-semibold text-gray-600"></tbody>
+</table>

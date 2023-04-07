@@ -35,7 +35,15 @@ abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?int $id = null;
 
+    #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Choice(choices: self::GENDERS)]
+    private ?string $gender = null;
+
     #[ORM\Column(length: 180, unique: true)]
+    #[Assert\NotBlank]
+    #[Assert\Email]
+    #[Assert\Length(max: 150)]
     private ?string $email = null;
 
     #[ORM\Column]
@@ -51,10 +59,19 @@ abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?\DateTimeImmutable $lastLoggedAt = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Length(min: 2, max: 180)]
     private ?string $firstname = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Length(min: 2, max: 180)]
     private ?string $lastname = null;
+
+    #[Assert\NotBlank(groups: ['CreatePlainPassword'])]
+    #[Assert\Regex(pattern: '/^(?=.*[^a-z0-9])(?=.*[0-9])(?=.*[a-z]).{8,}$/i', message:'Votre mot de passe doit contenir au moins 8 caractères, 1 chiffre, 1 lettre et 1 caractère spécial', groups: ['CreatePlainPassword', 'EditPlainPassword'])]
+    // https://regex101.com/r/PxnGfh/1
+    private ?string $plainPassword = null;
 
     public function __construct()
     {
@@ -171,6 +188,30 @@ abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setLastname(string $lastname): self
     {
         $this->lastname = $lastname;
+
+        return $this;
+    }
+
+    public function getLastLoggedAt(): ?\DateTimeImmutable
+    {
+        return $this->lastLoggedAt;
+    }
+
+    public function setLastLoggedAt(?\DateTimeImmutable $lastLoggedAt): self
+    {
+        $this->lastLoggedAt = $lastLoggedAt;
+
+        return $this;
+    }
+
+    public function getPlainPassword(): ?string
+    {
+        return $this->plainPassword;
+    }
+
+    public function setPlainPassword(string $plainPassword): self
+    {
+        $this->plainPassword = $plainPassword;
 
         return $this;
     }
