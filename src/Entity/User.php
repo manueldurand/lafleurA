@@ -10,6 +10,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[UniqueEntity(fields: ['email'], message: 'Cette adresse email est déjà utilisée', repositoryMethod: 'findUserByEmail')]
@@ -19,7 +20,8 @@ use Symfony\Component\Validator\Constraints as Assert;
     'administrator' => 'App\Entity\User\Administrator',
     'member'        => 'App\Entity\User\Member',
 ])]
-abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
+#[Vich\Uploadable]
+abstract class User implements UserInterface, PasswordAuthenticatedUserInterface, \Serializable
 {
     use TimestampableTrait;
     use SoftDeletableTrait;
@@ -75,6 +77,9 @@ abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column]
     private ?bool $active = null;
+
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    private ?Image $image = null;
 
     public function __construct()
     {
@@ -230,5 +235,37 @@ abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->active = $active;
 
         return $this;
+    }
+
+    public function getImage(): ?Image
+    {
+        return $this->image;
+    }
+
+    public function setImage(?Image $image): self
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /** @see \Serializable::serialize() */
+    public function serialize()
+    {
+        return serialize([
+            $this->id,
+            $this->email,
+            $this->password,
+        ]);
+    }
+
+    /** @see \Serializable::unserialize() */
+    public function unserialize($data)
+    {
+        [
+            $this->id,
+            $this->email,
+            $this->password,
+        ] = unserialize($data);
     }
 }

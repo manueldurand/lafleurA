@@ -23,6 +23,8 @@
 
 <body id="kt_body" class="app-blank bgi-size-cover bgi-attachment-fixed bgi-position-center bgi-no-repeat">
     <div class="d-flex flex-column flex-root" id="kt_app_root">
+        {% include 'admin/_components/_toasts.html.twig' %}
+
         <style>body { background-image: url('{{ asset('metronic/assets/media/auth/bg4.jpg') }}'); } [data-bs-theme="dark"] body { background-image: url({{ asset('metronic/assets/media/auth/bg4-dark.jpg')}}); }</style>
 
 

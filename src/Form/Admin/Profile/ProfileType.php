@@ -3,16 +3,26 @@
 namespace App\Form\Admin\Profile;
 
 use App\Entity\User;
+use App\Form\Admin\Files\UserAvatarType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Valid;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class ProfileType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+            ->add('image', UserAvatarType::class,[
+                'required' => true,
+                'label' => 'Avatar',
+                "constraints" => [
+                    new Valid(),
+                ]
+            ])
             ->add('firstname', TextType::class, [
                 'required' => true,
                 'label' => 'Prénom',

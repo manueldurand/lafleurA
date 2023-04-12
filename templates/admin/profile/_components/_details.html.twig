@@ -22,9 +22,9 @@
                     <!--begin::Col-->
                     <div class="col-lg-8">
                         <!--begin::Image input-->
-                        <div class="image-input image-input-outline" data-kt-image-input="true" style="background-image: url('assets/media/svg/avatars/blank.svg')">
+                        <div class="image-input image-input-outline" data-kt-image-input="true" style="background-image: url({{ app.user.image ? vich_uploader_asset(app.user.image, 'userImageFile') : 'assets/media/svg/avatars/blank.svg' }})">
                             <!--begin::Preview existing avatar-->
-                            <div class="image-input-wrapper w-125px h-125px" style="background-image: url(assets/media/avatars/300-1.jpg)"></div>
+                            <div class="image-input-wrapper w-125px h-125px" style="background-image: url({{ app.user.image ? vich_uploader_asset(app.user.image, 'userImageFile') : 'assets/media/svg/avatars/blank.svg' }})"></div>
                             <!--end::Preview existing avatar-->
                             <!--begin::Label-->
                             <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change avatar">
@@ -33,8 +33,8 @@
                                     <span class="path2"></span>
                                 </i>
                                 <!--begin::Inputs-->
+                                {{ form_widget(form.image.userImageFile) }}
                                 <input type="file" name="avatar" accept=".png, .jpg, .jpeg" />
-                                <input type="hidden" name="avatar_remove" />
                                 <!--end::Inputs-->
                             </label>
                             <!--end::Label-->
@@ -46,7 +46,12 @@
                                         </i>
                                     </span>
                         </div>
-                        <div class="form-text">Allowed file types: png, jpg, jpeg.</div>
+                        <div class="form-text">
+                            {{ form_help(form.image.userImageFile) }}
+                            <span class="d-block text-danger mt-4">
+                                {{ form_errors(form.image.userImageFile) }}
+                            </span>
+                        </div>
                     </div>
                 </div>
                 <!--begin::Input group-->
