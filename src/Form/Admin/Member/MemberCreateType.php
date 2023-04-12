@@ -4,8 +4,10 @@ namespace App\Form\Admin\Member;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -24,6 +26,18 @@ class MemberCreateType extends AbstractType
                 'attr' => [
                     'class' => 'form-control form-control-lg form-control-solid mb-3 mb-lg-0',
                     'autocomplete' => 'new-email',
+                ]
+            ])
+            ->add('gender', ChoiceType::class, [
+                'required' => true,
+                'label' => 'Civilité',
+                'label_attr' => [
+                    'class' => 'col-lg-4 col-form-label required fw-semibold fs-6'
+                ],
+                'choices' => User::GENDERS,
+                'attr' => [
+                    'class' => 'form-select form-select-lg form-select-solid mb-3 mb-lg-0',
+                    'data-control' => 'select2'
                 ]
             ])
             ->add('firstname', TextType::class, [
@@ -46,32 +60,30 @@ class MemberCreateType extends AbstractType
                     'class' => 'form-control form-control-lg form-control-solid mb-3 mb-lg-0',
                 ]
             ])
-            ->add('plainPassword', PasswordType::class, [
-//                'type' => PasswordType::class,
-//                'invalid_message' => 'Les mots de passe doivent correspondre.',
+            ->add('plainPassword', RepeatedType::class, [
+                'type' => PasswordType::class,
+                'invalid_message' => 'Les mots de passe doivent correspondre.',
                 'required' => true,
-//                'first_options'  => [
-//                    'label' => 'Mot de passe',
-//                    'class' => 'col-lg-4 col-form-label required fw-semibold fs-6'
-//                ],
-//                'second_options' => [
-//                    'label' => 'Confirmer',
-//                    'class' => 'col-lg-4 col-form-label required fw-semibold fs-6'
-//                ],
-                'label' => 'Mot de passe',
-                'attr' => [
-                    'class' => 'form-control form-control-lg form-control-solid',
-                    'autocomplete' => false,
+                'first_options'  => [
+                    'label' => 'Mot de passe',
+                    'attr' => [
+                        'class' => 'form-control form-control-lg form-control-solid',
+                    ],
+                    'help' => 'Laissez vide pour ne pas modifier votre mot de passe',
+                    'help_attr' => [
+                        'class' => 'my-2 fst-italic text-mute'
+                    ]
                 ],
-                'help' => 'Laissez vide pour ne pas modifier votre mot de passe',
-                'help_attr' => [
-                    'class' => 'my-2 fst-italic text-mute'
-                ]
-//                'options' => [
-//                    'attr' => [
-//                        'class' => 'col-lg-4 col-form-label required fw-semibold fs-6'
-//                    ]
-//                ],
+                'second_options' => [
+                    'label' => 'Confirmer',
+                    'attr' => [
+                        'class' => 'form-control form-control-lg form-control-solid',
+                    ],
+                    'help' => 'Laissez vide pour ne pas modifier votre mot de passe',
+                    'help_attr' => [
+                        'class' => 'my-2 fst-italic text-mute'
+                    ]
+                ],
             ])
         ;
     }

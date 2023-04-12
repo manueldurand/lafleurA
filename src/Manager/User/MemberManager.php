@@ -50,6 +50,7 @@ class MemberManager
                 TextColumn::class,
                 [
                     'label' => 'Civilité',
+                    'field' => 'user.gender',
                     'render' => function ($value, Member $user) {
                         return array_search($user->getGender(), User::GENDERS);
                     }
@@ -116,15 +117,16 @@ class MemberManager
                     }
                 ]
             )
-//            ->add(
-//                'active',
-//                BoolColumn::class,
-//                [
-//                    'label'      => 'Active',
-//                    'trueValue'  => '<i class="bi bi-circle-fill text-success fs-8 me-2"></i> Oui',
-//                    'falseValue' => '<i class="bi bi-circle-fill text-danger fs-8 me-2"></i> Non',
-//                ]
-//            )
+            ->add(
+                'active',
+                BoolColumn::class,
+                [
+                    'label'      => 'Active',
+                    'field'      => 'user.active',
+                    'trueValue'  => '<i class="bi bi-circle-fill text-success fs-8 me-2"></i> Oui',
+                    'falseValue' => '<i class="bi bi-circle-fill text-danger fs-8 me-2"></i> Non',
+                ]
+            )
             ->add(
                 'lastLoggedAt',
                 DateTimeColumn::class,
@@ -150,20 +152,26 @@ class MemberManager
                             // UrlGeneratorInterface::ABSOLUTE_URL
                             UrlGeneratorInterface::NETWORK_PATH
                         );
-                        $value = '<a class="btn btn-sm btn-light btn-flex btn-center btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
-                                    Actions
-									<i class="ki-duotone ki-down fs-5 ms-1"></i>
-									</a>
-									<div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4" data-kt-menu="true">
-										<div class="menu-item px-3">
-											<a href=".'.$editUrl.'" class="menu-link px-3">Modifier</a>
-										</div>
-										<div class="menu-item px-3">
-											<a href="#" class="menu-link px-3" data-kt-customer-table-filter="delete_row">Delete</a>
-											</div>
-										</div>
-									</div>';
+                        $deleteUrl = $this->urlGenerator->generate(
+                            'app_admin_users_delete',
+                            [
+                                'id' => $user->getId()
+                            ],
+                            // UrlGeneratorInterface::ABSOLUTE_URL
+                            UrlGeneratorInterface::NETWORK_PATH
+                        );
+                        $csrfToken = $this->csrfTokenManager->getToken('delete-token');
 
+                        $value = '<a href="'.$editUrl.'" class="btn btn-icon btn-light-primary w-30px h-30px me-1">
+                                      <span data-bs-toggle="tooltip" data-bs-trigger="hover" aria-label="Edit" data-bs-original-title="Modifier" data-kt-initialized="1">                                
+                                            <i class="ki-duotone ki-pencil fs-3"><span class="path1"></span><span class="path2"></span></i>
+                                      </span>
+                                    </a>';
+                        $value .= '<a href="'.$deleteUrl.'" data-token="'.$csrfToken.'" class="btn btn-icon btn-light-danger w-30px h-30px delete-button">
+                                      <span data-bs-toggle="tooltip" data-bs-trigger="hover" aria-label="Edit" data-bs-original-title="Supprimer" data-kt-initialized="1">                                
+                                            <i class="ki-duotone ki-trash fs-3"><span class="path1"></span><span class="path2"></span></i>
+                                      </span>
+                                    </a>';
                         return $value;
                     },
                     'orderable' => false,
@@ -186,6 +194,16 @@ class MemberManager
                     'criteria' => [
                         function (QueryBuilder $builder, DataTableState $state) {
                             $search = $state->getGlobalSearch();
+
+                            foreach ($state->getSearchColumns() as $key => $value) {
+                                /** @var AbstractColumn $column */
+                                $column = $value['column'];
+                                $columnSearch = $value['search'];
+
+                                $builder
+                                    ->andWhere("{$column->getField()} = :$key")
+                                    ->setParameter(":$key", $columnSearch);
+                            }
 
                             $builder
                                 ->andWhere('

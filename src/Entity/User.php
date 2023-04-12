@@ -69,12 +69,16 @@ abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $lastname = null;
 
     #[Assert\NotBlank(groups: ['CreatePlainPassword'])]
-    #[Assert\Regex(pattern: '/^(?=.*[^a-z0-9])(?=.*[0-9])(?=.*[a-z]).{8,}$/i', message:'Votre mot de passe doit contenir au moins 8 caractères, 1 chiffre, 1 lettre et 1 caractère spécial', groups: ['CreatePlainPassword', 'EditPlainPassword'])]
+    #[Assert\Regex(pattern: '/^(?=.*[^a-z0-9])(?=.*[0-9])(?=.*[a-z]).{8,}$/i', message:'Votre mot de passe doit contenir au moins 8 caractères, 1 chiffre, 1 lettre et 1 caractère spécial.', groups: ['CreatePlainPassword', 'EditPlainPassword'])]
     // https://regex101.com/r/PxnGfh/1
     private ?string $plainPassword = null;
 
+    #[ORM\Column]
+    private ?bool $active = null;
+
     public function __construct()
     {
+        $this->active = true;
     }
 
     public function __toString(): string
@@ -212,6 +216,18 @@ abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPlainPassword(string $plainPassword): self
     {
         $this->plainPassword = $plainPassword;
+
+        return $this;
+    }
+
+    public function isActive(): ?bool
+    {
+        return $this->active;
+    }
+
+    public function setActive(bool $active): self
+    {
+        $this->active = $active;
 
         return $this;
     }

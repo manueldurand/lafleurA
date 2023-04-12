@@ -29,7 +29,6 @@
                         <span class="path1"></span>
                         <span class="path2"></span>
                     </i>
-{#                    <input type="text" class="form-control form-control-solid w-250px ps-12 datatable-search-place" data-datatable="{{ datatable.name }}" placeholder="Rechercher" />#}
                 </div>
                 <!--end::Search-->
             </div>
@@ -62,7 +61,7 @@
                                 <label class="form-label fs-5 fw-semibold mb-3">Civilité:</label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <select class="form-select form-select-solid fw-bold datatable-filter" data-id="{{ datatable.name }}" data-kt-select2="true" data-placeholder="Choisissez une option" data-allow-clear="true" data-dropdown-parent="#kt-toolbar-filter">
+                                <select class="form-select form-select-solid fw-bold datatable-filter" data-id="{{ datatable.name }}" data-column="0" data-kt-select2="true" data-placeholder="Choisissez une option" data-allow-clear="true" data-dropdown-parent="#kt-toolbar-filter">
                                     <option></option>
                                     {% for gender, value in genders %}
                                         <option value="{{ value }}">{{ gender }}</option>
@@ -73,31 +72,12 @@
                             <!--end::Input group-->
                             <!--begin::Input group-->
                             <div class="mb-10">
-                                <!--begin::Label-->
-                                <label class="form-label fs-5 fw-semibold mb-3">Utilisateurs actif</label>
-                                <!--end::Label-->
-                                <!--begin::Options-->
-                                <div class="d-flex flex-column flex-wrap fw-semibold" data-kt-customer-table-filter="payment_type">
-                                    <!--begin::Option-->
-                                    <label class="form-check form-check-sm form-check-custom form-check-solid mb-3 me-5">
-                                        <input class="form-check-input" type="radio" name="active_user" value="" checked="checked" />
-                                        <span class="form-check-label text-gray-600">Tous</span>
-                                    </label>
-                                    <!--end::Option-->
-                                    <!--begin::Option-->
-                                    <label class="form-check form-check-sm form-check-custom form-check-solid mb-3 me-5">
-                                        <input class="form-check-input" type="radio" name="active_user" value="true" />
-                                        <span class="form-check-label text-gray-600">Oui</span>
-                                    </label>
-                                    <!--end::Option-->
-                                    <!--begin::Option-->
-                                    <label class="form-check form-check-sm form-check-custom form-check-solid mb-3">
-                                        <input class="form-check-input" type="radio" name="active_user" value="false" />
-                                        <span class="form-check-label text-gray-600">Non</span>
-                                    </label>
-                                    <!--end::Option-->
-                                </div>
-                                <!--end::Options-->
+                                <label class="form-label fs-5 fw-semibold mb-3">Utilisateurs actifs</label>
+                                <select class="form-select form-select-solid fw-bold datatable-filter" data-id="{{ datatable.name }}" data-column="4" data-kt-select2="true"s data-placeholder="Choisissez une option" data-allow-clear="true" data-dropdown-parent="#kt-toolbar-filter">
+                                    <option></option>
+                                    <option value=1>Actifs</option>
+                                    <option value=0>Inactifs</option>
+                                </select>
                             </div>
                             <!--end::Input group-->
                         </div>
@@ -128,8 +108,45 @@
     <!--end::Card-->
 {% endblock %}
 
+{% block modals %}
+    {# Delete confirmation #}
+    <div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="delete-modal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="modal">
+            <div class="modal-content">
+                <div class="modal-body text-dark">
+                    <div class="swal2-icon swal2-warning swal2-icon-show" style="display: flex;"><div class="swal2-icon-content">!</div></div>
+                    <div class="text-center my-6">
+                        Êtes-vous certain de vouloir supprimer cet utilisateur ?<br/>
+                        Attention, cette action est définitive et irréversible !
+                    </div>
+                    <div class="d-flex justify-content-center mb-4">
+                        <form id="delete-form" action="" method="post">
+                            <input id="delete-token" type="hidden" name="token" value=""/>
+                            <button class="btn btn-danger btn-sm" type="submit">Oui, supprimer cet utilisateur</button>
+                        </form>
+
+                        <button type="button" class="btn btn-outline-hover-dark btn-sm " data-bs-dismiss="modal">Non, annuler</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
 {% block javascripts %}
     <script src="{{ asset('metronic/assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
     <script src="{{ asset('bundles/datatables/js/datatables.js') }}"></script>
     <script src="{{ asset('js/datatable/initialization.js') }}"></script>
+    <script src="{{ asset('js/datatable/modal-delete.js') }}"></script>
+
+{#  Test  #}
+    <script src="{{ asset('metronic/assets/js/custom/apps/customers/list/export.js') }}"></script>
+    <script src="{{ asset('metronic/assets/js/custom/apps/customers/list/list.js') }}"></script>
+    <script src="{{ asset('metronic/assets/js/custom/apps/customers/add.js') }}"></script>
+    <script src="{{ asset('metronic/assets/js/widgets.bundle.js') }}"></script>
+    <script src="{{ asset('metronic/assets/js/custom/widgets.js') }}"></script>
+    <script src="{{ asset('metronic/assets/js/custom/apps/chat/chat.js') }}"></script>
+    <script src="{{ asset('metronic/assets/js/custom/utilities/modals/upgrade-plan.js') }}"></script>
+    <script src="{{ asset('metronic/assets/js/custom/utilities/modals/create-app.js') }}"></script>
+    <script src="{{ asset('metronic/assets/js/custom/utilities/modals/users-search.js') }}"></script>
 {% endblock %}

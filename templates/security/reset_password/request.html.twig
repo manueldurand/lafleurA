@@ -1,0 +1,27 @@
+{% extends 'security/base.html.twig' %}
+
+{% block title %}{{ parent() }} – Mot de passe oublié{% endblock %}
+
+{% block body %}
+    {{ form_start(form, {'attr': {'class': 'form w-100'}}) }}
+        <div class="text-center mb-10">
+            <h1 class="text-dark fw-bolder mb-3">Mot de passe oublié ?</h1>
+            <div class="text-gray-500 fw-semibold fs-6">Entrez votre email pour réinitialiser votre mot de passe.</div>
+        </div>
+
+        <div class="fv-row mb-8">
+            {{ form_widget(form.email) }}
+        </div>
+
+        <div class="d-flex flex-wrap justify-content-center pb-lg-0">
+            <button type="submit" id="kt_sign_in_submit" class="btn btn-primary">
+                <span class="indicator-label">Envoyer</span>
+                <span class="indicator-progress">
+					Veuillez patienter...
+					<span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+				</span>
+            </button>
+            <a href="{{ path('app_login') }}" class="btn btn-light">Annuler</a>
+        </div>
+    {{ form_end(form) }}
+{% endblock %}

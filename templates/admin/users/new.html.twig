@@ -25,30 +25,50 @@
                 <label class="col-lg-4 col-form-label fw-semibold fs-6">{{ form_label(form.email) }}</label>
                 <div class="col-lg-8 d-flex flex-column justify-content-center fv-row">
                     {{ form_widget(form.email) }}
+                    {{ form_errors(form.email) }}
+                </div>
+            </div>
+            <div class="row mb-6">
+                <label class="col-lg-4 col-form-label fw-semibold fs-6">{{ form_label(form.gender) }}</label>
+                <div class="col-lg-8 fv-row">
+                    {{ form_widget(form.gender) }}
+                    {{ form_errors(form.gender) }}
                 </div>
             </div>
             <div class="row mb-6">
                 <label class="col-lg-4 col-form-label fw-semibold fs-6">{{ form_label(form.firstname) }}</label>
                 <div class="col-lg-8 fv-row">
                     {{ form_widget(form.firstname) }}
+                    {{ form_errors(form.firstname) }}
                 </div>
             </div>
             <div class="row mb-6">
                 <label class="col-lg-4 col-form-label fw-semibold fs-6">{{ form_label(form.lastname) }}</label>
                 <div class="col-lg-8 fv-row">
                     {{ form_widget(form.lastname) }}
+                    {{ form_errors(form.lastname) }}
                 </div>
             </div>
             <div class="row mb-6">
-                <label class="col-lg-4 col-form-label fw-semibold fs-6">{{ form_label(form.plainPassword) }}</label>
+                <label class="col-lg-4 col-form-label fw-semibold fs-6">{{ form_label(form.plainPassword.first) }}</label>
                 <div class="col-lg-8 fv-row">
-                    {{ form_widget(form.plainPassword) }}
+                    {{ form_widget(form.plainPassword.first) }}
+                    {{ form_help(form.plainPassword.first) }}
+                    {{ form_errors(form.plainPassword.first) }}
+                </div>
+            </div>
+            <div class="row mb-6">
+                <label class="col-lg-4 col-form-label fw-semibold fs-6">{{ form_label(form.plainPassword.second) }}</label>
+                <div class="col-lg-8 fv-row">
+                    {{ form_widget(form.plainPassword.second) }}
+                    {{ form_help(form.plainPassword.second) }}
+                    {{ form_errors(form.plainPassword.second) }}
                 </div>
             </div>
         </div>
         <div class="card-footer d-flex justify-content-end py-6 px-9">
             <a href="{{ path('app_admin_users_list') }}" class="btn btn-light btn-active-dark me-2">Annuler et revenir en arrière</a>
-            <a href="{{ path('app_admin_users_list') }}" class="btn btn-primary" id="kt_account_profile_details_submit">Créer l'utilisateur</a>
+            <button type="submit" href="{{ path('app_admin_users_list') }}" class="btn btn-primary" id="kt_account_profile_details_submit">Créer l'utilisateur</button>
         </div>
         {{ form_end(form) }}
     </div>

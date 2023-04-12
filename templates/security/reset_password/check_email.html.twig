@@ -1,0 +1,29 @@
+{% extends 'security/base.html.twig' %}
+
+{% block title %}Mot de passe oublié - {{ parent() }}{% endblock %}
+
+{% block body %}
+    <div class="mb-10 text-center">
+        <h1 class="mb-3 text-dark">Mot de passe oublié</h1>
+    </div>
+
+    <div class="text-center text-gray-500 fw-semibold fs-6 mb-10">
+        <p>
+            Si un compte correspond à l'adresse e-mail que vous avez saisie, vous recevrez un e-mail dans quelques instants
+            avec un lien pour réinitialiser votre mot de passe.<br>
+        </p>
+
+        <p>
+            Ce lien expirera dans {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle', 'fr') }}.
+        </p>
+
+        <p>
+            Si vous ne recevez pas d'e-mail, vérifiez votre dossier SPAM ou
+            <a href="{{ path('reset_password_request') }}">essayez à nouveau dans quelques instants.</a>
+        </p>
+    </div>
+
+    <div class="d-flex flex-wrap justify-content-center pb-lg-0">
+        <a href="{{ path('app_login') }}" class="btn btn-primary">Retour à la connexion</a>
+    </div>
+{% endblock %}

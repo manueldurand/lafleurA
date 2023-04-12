@@ -87,4 +87,26 @@ class MemberController extends AbstractController
             'form' => $form->createView()
         ]);
     }
+
+    #[Route('/{id}/delete', name: 'delete')]
+    public function delete(Member $member, Request $request): Response
+    {
+
+        if ($member->getDeletedAt()) {
+            $this->addFlash('danger', 'Cet utilisateur a déjà été supprimé.');
+            return $this->redirectToRoute('app_admin_users_list');
+        }
+
+        $token = $request->request->get('token');
+
+        if ($this->isCsrfTokenValid('delete-token', $token)) {
+            $this->memberRepository->remove($member, true);
+            $this->addFlash('success', "L'utilisateur a bien été supprimé.");
+        }
+        else {
+            $this->addFlash('danger', "Requête invalide, l'utilisateur n'a pas été supprimé");
+        }
+
+        return $this->redirectToRoute('app_admin_users_list');
+    }
 }

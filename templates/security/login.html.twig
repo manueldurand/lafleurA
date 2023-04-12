@@ -4,7 +4,7 @@
 
 {% block body %}
     <form class="form w-100" method="POST" action="{{ path('app_login') }}" id="kt_sign_in_form" >
-        <div class="text-center mb-20">
+        <div class="text-center mb-10">
             <h1 class="text-dark fw-bolder mb-3">Connexion</h1>
             <div class="text-gray-500 fw-semibold fs-6">{{ app_name }}</div>
         </div>
@@ -28,7 +28,7 @@
 
         <div class="d-flex flex-stack flex-wrap gap-3 fs-base fw-semibold mb-8">
             <div></div>
-            <a href="#" class="link-primary">Mot de passe oublié ?</a>
+            <a href="{{ path('reset_password_request') }}" class="link-primary">Mot de passe oublié ?</a>
         </div>
 
         <div class="d-grid mb-10">
