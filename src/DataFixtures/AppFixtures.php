@@ -13,17 +13,15 @@ use Symfony\Component\Filesystem\Filesystem;
 class AppFixtures extends Fixture
 {
     const SUPER_ADMINS = [
-        [User::GENDERS['Monsieur'], "KEOLE", "Système", "dev+starter-sf@keole.net", "castor1234"],
-        [User::GENDERS['Monsieur'], "Alzounies", "Alexandre", "alex@keole.net", "alex"],
-        [User::GENDERS['Monsieur'], "Schmitt", "Julien", "julien@keole.net", "julien"],
-        [User::GENDERS['Monsieur'], "Corso", "Rémi", "remi@keole.net", "remi"],
-        [User::GENDERS['Monsieur'], "Mariolle", "Thibault", "thibault@keole.net", "thibault"],
-        [User::GENDERS['Monsieur'], "Legagneux", "Matteo", "Matteo@keole.net", "matteo"],
+        [User::GENDERS['Monsieur'], "Durand", "Manuel", "manuel@lafleur.net", "manuel"],
+
+
     ];
 
     const ADMINS = [
-        [User::GENDERS['Monsieur'], "Admin", "Test", "dev+admin-test@keole.net", "castor1234"],
-        [User::GENDERS['Monsieur'], "Admin2", "Test2", "dev+admin-test2@keole.net", "castor1234"],
+        [User::GENDERS['Monsieur'], "Admin", "Test", "admin@lafleur.net", "admin"],
+        [User::GENDERS['Monsieur'], "Cholet", "Guillaume", "guillaume@lafleur.net", "guillaume"],
+        [User::GENDERS['Monsieur'], "Cholet", "Sabine", "sabine@lafleur.net", "sabine"],
     ];
 
     private UserPasswordHasherInterface $passwordHasher;

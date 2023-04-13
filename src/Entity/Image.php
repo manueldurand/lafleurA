@@ -2,59 +2,56 @@
 
 namespace App\Entity;
 
-use App\Entity\Trait\SoftDeletableTrait;
-use App\Entity\Trait\TimestampableTrait;
-use App\Repository\ImageRepository;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\HttpFoundation\File\File;
-use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
-#[ORM\Entity(repositoryClass: ImageRepository::class)]
-#[Vich\Uploadable]
+/**
+ * Image
+ *
+ * @ORM\Table(name="image")
+ * @ORM\Entity
+ */
 class Image
 {
-    use TimestampableTrait;
-    use SoftDeletableTrait;
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
 
-    #[Vich\UploadableField(mapping: 'user_image', fileNameProperty: 'name', size: 'size', mimeType: 'mimeType', originalName: 'originalName')]
-    private ?File $userImageFile = null;
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="name", type="string", length=255, nullable=true)
+     */
+    private $name;
 
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id = null;
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="original_name", type="string", length=255, nullable=true)
+     */
+    private $originalName;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $name = null;
+    /**
+     * @var int|null
+     *
+     * @ORM\Column(name="size", type="integer", nullable=true)
+     */
+    private $size;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $originalName = null;
-
-    #[ORM\Column(nullable: true)]
-    private ?int $size = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $mimeType = null;
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="mime_type", type="string", length=255, nullable=true)
+     */
+    private $mimeType;
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getUserImageFile(): ?File
-    {
-        return $this->userImageFile;
-    }
-
-    public function setUserImageFile(?File $userImageFile = null): void
-    {
-        $this->userImageFile = $userImageFile;
-
-        if (null !== $userImageFile) {
-            // It is required that at least one field changes if you are using doctrine
-            // otherwise the event listeners won't be called and the file is lost
-            $this->updatedAt = new \DateTimeImmutable();
-        }
     }
 
     public function getName(): ?string
@@ -104,4 +101,6 @@ class Image
 
         return $this;
     }
+
+
 }
