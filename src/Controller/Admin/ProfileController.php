@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/admin', name: 'app_admin_')]
+#[Route('/lafleur/admin', name: 'app_admin_')]
 class ProfileController extends AbstractController
 {
 
@@ -28,7 +28,7 @@ class ProfileController extends AbstractController
         $this->userPasswordHasher = $userPasswordHasher;
     }
 
-    #[Route('/profile', name: 'profile')]
+    #[Route('/lafleur/profile', name: 'profile')]
     public function index(Request $request): Response
     {
         /** @var User $user */

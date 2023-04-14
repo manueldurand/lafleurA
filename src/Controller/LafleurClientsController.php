@@ -10,22 +10,22 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/lafleur/clients')]
+#[Route('/lafleur/admin/clients')]
 class LafleurClientsController extends AbstractController
 {
-    #[Route('/', name: 'app_lafleur_clients_index', methods: ['GET'])]
+    #[Route('/', name: 'app_admin_lafleur_clients_index', methods: ['GET'])]
     public function index(EntityManagerInterface $entityManager): Response
     {
         $lafleurClients = $entityManager
             ->getRepository(LafleurClients::class)
             ->findAll();
 
-        return $this->render('lafleur_clients/index.html.twig', [
+        return $this->render('admin/lafleur_clients/index.html.twig', [
             'lafleur_clients' => $lafleurClients,
         ]);
     }
 
-    #[Route('/new', name: 'app_lafleur_clients_new', methods: ['GET', 'POST'])]
+    #[Route('/new', name: 'app_admin_lafleur_clients_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $lafleurClient = new LafleurClients();
@@ -36,24 +36,24 @@ class LafleurClientsController extends AbstractController
             $entityManager->persist($lafleurClient);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_lafleur_clients_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_admin_lafleur_clients_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('lafleur_clients/new.html.twig', [
+        return $this->renderForm('admin/lafleur_clients/new.html.twig', [
             'lafleur_client' => $lafleurClient,
             'form' => $form,
         ]);
     }
 
-    #[Route('/{idClient}', name: 'app_lafleur_clients_show', methods: ['GET'])]
+    #[Route('/{idClient}', name: 'app_admin_lafleur_clients_show', methods: ['GET'])]
     public function show(LafleurClients $lafleurClient): Response
     {
-        return $this->render('lafleur_clients/show.html.twig', [
+        return $this->render('admin/lafleur_clients/show.html.twig', [
             'lafleur_client' => $lafleurClient,
         ]);
     }
 
-    #[Route('/{idClient}/edit', name: 'app_lafleur_clients_edit', methods: ['GET', 'POST'])]
+    #[Route('/{idClient}/edit', name: 'app_admin_lafleur_clients_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, LafleurClients $lafleurClient, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(LafleurClientsType::class, $lafleurClient);
@@ -62,16 +62,16 @@ class LafleurClientsController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_lafleur_clients_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_admin_lafleur_clients_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('lafleur_clients/edit.html.twig', [
+        return $this->renderForm('admin/lafleur_clients/edit.html.twig', [
             'lafleur_client' => $lafleurClient,
             'form' => $form,
         ]);
     }
 
-    #[Route('/{idClient}', name: 'app_lafleur_clients_delete', methods: ['POST'])]
+    #[Route('/{idClient}', name: 'app_admin_lafleur_clients_delete', methods: ['POST'])]
     public function delete(Request $request, LafleurClients $lafleurClient, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$lafleurClient->getIdClient(), $request->request->get('_token'))) {
@@ -79,6 +79,6 @@ class LafleurClientsController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('app_lafleur_clients_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_admin_lafleur_clients_index', [], Response::HTTP_SEE_OTHER);
     }
 }

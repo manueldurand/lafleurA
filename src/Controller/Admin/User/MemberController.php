@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/admin/users', name: 'app_admin_users_')]
+#[Route('/lafleur/admin/users', name: 'app_admin_users_')]
 class MemberController extends AbstractController
 {
     /** @var MemberManager $memberManager */
@@ -49,7 +49,7 @@ class MemberController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'new')]
+    #[Route('/lafleur/new', name: 'new')]
     public function new(Request $request): Response
     {
         $member = new Member();
@@ -69,7 +69,7 @@ class MemberController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'edit')]
+    #[Route('/lafleur/{id}/edit', name: 'edit')]
     public function edit(Member $member, Request $request): Response
     {
         $form = $this->createForm(MemberCreateType::class, $member);
@@ -88,7 +88,7 @@ class MemberController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/delete', name: 'delete')]
+    #[Route('/lafleur/{id}/delete', name: 'delete')]
     public function delete(Member $member, Request $request): Response
     {
 

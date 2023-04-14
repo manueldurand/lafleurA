@@ -25,7 +25,7 @@ use SymfonyCasts\Bundle\ResetPassword\Controller\ResetPasswordControllerTrait;
 use SymfonyCasts\Bundle\ResetPassword\Exception\ResetPasswordExceptionInterface;
 use SymfonyCasts\Bundle\ResetPassword\ResetPasswordHelperInterface;
 
-#[Route('/forgot-password', name: 'reset_password_')]
+#[Route('/lafleur/forgot-password', name: 'reset_password_')]
 class ResetPasswordController extends AbstractController
 {
     use ResetPasswordControllerTrait;
