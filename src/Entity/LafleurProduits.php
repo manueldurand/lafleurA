@@ -10,112 +10,104 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * LafleurProduits
  *
- * @ORM\Table(name="lafleur_produits", indexes={@ORM\Index(name="fk_lafleur_produits_unite1_id", columns={"unite_id"}), @ORM\Index(name="fk_produit_couleur_id", columns={"couleur_id"}), @ORM\Index(name="fk_lafleur_produits_type_plante1_id", columns={"plante_id"})})
- * @ORM\Entity
  */
+#[ORM\Table(name: 'lafleur_produits')]
+#[ORM\Index(name: 'fk_lafleur_produits_unite1_id', columns: ['unite_id'])]
+#[ORM\Index(name: 'fk_produit_couleur_id', columns: ['couleur_id'])]
+#[ORM\Index(name: 'fk_lafleur_produits_type_plante1_id', columns: ['plante_id'])]
+#[ORM\Entity]
 class LafleurProduits
 {
     /**
      * @var int
      *
-     * @ORM\Column(name="id_produit", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
+    #[ORM\Column(name: 'id_produit', type: 'integer', nullable: false)]
+    #[ORM\Id]
+    #[ORM\GeneratedValue(strategy: 'IDENTITY')]
     private $idProduit;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="prix", type="decimal", precision=5, scale=2, nullable=false)
      */
+    #[ORM\Column(name: 'prix', type: 'decimal', precision: 5, scale: 2, nullable: false)]
     private $prix;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="string", length=255, nullable=false)
      */
+    #[ORM\Column(name: 'description', type: 'string', length: 255, nullable: false)]
     private $description;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="image1", type="string", length=45, nullable=false)
      */
+    #[ORM\Column(name: 'image1', type: 'string', length: 45, nullable: false)]
     private $image1;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="image2", type="string", length=45, nullable=false)
      */
+    #[ORM\Column(name: 'image2', type: 'string', length: 45, nullable: false)]
     private $image2;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="stock", type="integer", nullable=false)
      */
+    #[ORM\Column(name: 'stock', type: 'integer', nullable: false)]
     private $stock;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_m_a_j", type="datetime", nullable=false)
      */
+    #[ORM\Column(name: 'date_m_a_j', type: 'datetime', nullable: false)]
     private $dateMAJ;
 
     /**
      * @var \LafleurUnite
      *
-     * @ORM\ManyToOne(targetEntity="LafleurUnite")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="unite_id", referencedColumnName="id_unite")
-     * })
      */
+    #[ORM\JoinColumn(name: 'unite_id', referencedColumnName: 'id_unite')]
+    #[ORM\ManyToOne(targetEntity: 'LafleurUnite')]
     private $unite;
 
     /**
      * @var \LafleurCouleurs
      *
-     * @ORM\ManyToOne(targetEntity="LafleurCouleurs")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="couleur_id", referencedColumnName="idcouleur")
-     * })
      */
+    #[ORM\JoinColumn(name: 'couleur_id', referencedColumnName: 'idcouleur')]
+    #[ORM\ManyToOne(targetEntity: 'LafleurCouleurs')]
     private $couleur;
 
     /**
      * @var \LafleurTypePlante
      *
-     * @ORM\ManyToOne(targetEntity="LafleurTypePlante")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="plante_id", referencedColumnName="id_type_plante")
-     * })
      */
+    #[ORM\JoinColumn(name: 'plante_id', referencedColumnName: 'id_type_plante')]
+    #[ORM\ManyToOne(targetEntity: 'LafleurTypePlante')]
     private $plante;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="LafleurCommandes", mappedBy="produit")
      */
+    #[ORM\ManyToMany(targetEntity: 'LafleurCommandes', mappedBy: 'produit')]
     private $commande = array();
 
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="LafleurCategories", inversedBy="produit")
-     * @ORM\JoinTable(name="lafleur_produits_categories",
-     *   joinColumns={
-     *     @ORM\JoinColumn(name="produit_id", referencedColumnName="id_produit")
-     *   },
-     *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="categories_id", referencedColumnName="id_categories")
-     *   }
-     * )
      */
+    #[ORM\JoinTable(name: 'lafleur_produits_categories')]
+    #[ORM\JoinColumn(name: 'produit_id', referencedColumnName: 'id_produit')]
+    #[ORM\InverseJoinColumn(name: 'categories_id', referencedColumnName: 'id_categories')]
+    #[ORM\ManyToMany(targetEntity: 'LafleurCategories', inversedBy: 'produit')]
     private $categories = array();
 
     /**

@@ -10,88 +10,81 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * LafleurCommandes
  *
- * @ORM\Table(name="lafleur_commandes", indexes={@ORM\Index(name="fk_lafleur_commandes_lafleur_lots1_idx", columns={"lot_id"}), @ORM\Index(name="fk_commande_client1_idx", columns={"client_id"})})
- * @ORM\Entity
  */
+#[ORM\Table(name: 'lafleur_commandes')]
+#[ORM\Index(name: 'fk_lafleur_commandes_lafleur_lots1_idx', columns: ['lot_id'])]
+#[ORM\Index(name: 'fk_commande_client1_idx', columns: ['client_id'])]
+#[ORM\Entity]
 class LafleurCommandes
 {
     /**
      * @var int
      *
-     * @ORM\Column(name="id_commande", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
+    #[ORM\Column(name: 'id_commande', type: 'integer', nullable: false)]
+    #[ORM\Id]
+    #[ORM\GeneratedValue(strategy: 'IDENTITY')]
     private $idCommande;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_commande", type="datetime", nullable=false)
      */
+    #[ORM\Column(name: 'date_commande', type: 'datetime', nullable: false)]
     private $dateCommande;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="livraison_souhaitee", type="datetime", nullable=false)
      */
+    #[ORM\Column(name: 'livraison_souhaitee', type: 'datetime', nullable: false)]
     private $livraisonSouhaitee;
 
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="date_livraison", type="datetime", nullable=true)
      */
+    #[ORM\Column(name: 'date_livraison', type: 'datetime', nullable: true)]
     private $dateLivraison;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="etat_commande", type="string", length=45, nullable=false)
      */
+    #[ORM\Column(name: 'etat_commande', type: 'string', length: 45, nullable: false)]
     private $etatCommande;
 
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="m_a_j", type="datetime", nullable=true)
      */
+    #[ORM\Column(name: 'm_a_j', type: 'datetime', nullable: true)]
     private $mAJ;
 
     /**
      * @var \LafleurClients
      *
-     * @ORM\ManyToOne(targetEntity="LafleurClients")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="client_id", referencedColumnName="id_client")
-     * })
      */
+    #[ORM\JoinColumn(name: 'client_id', referencedColumnName: 'id_client')]
+    #[ORM\ManyToOne(targetEntity: 'LafleurClients')]
     private $client;
 
     /**
      * @var \LafleurLots
      *
-     * @ORM\ManyToOne(targetEntity="LafleurLots")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="lot_id", referencedColumnName="id_lot")
-     * })
      */
+    #[ORM\JoinColumn(name: 'lot_id', referencedColumnName: 'id_lot')]
+    #[ORM\ManyToOne(targetEntity: 'LafleurLots')]
     private $lot;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="LafleurProduits", inversedBy="commande")
-     * @ORM\JoinTable(name="lafleur_commande_produits",
-     *   joinColumns={
-     *     @ORM\JoinColumn(name="commande_id", referencedColumnName="id_commande")
-     *   },
-     *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="produit_id", referencedColumnName="id_produit")
-     *   }
-     * )
      */
+    #[ORM\JoinTable(name: 'lafleur_commande_produits')]
+    #[ORM\JoinColumn(name: 'commande_id', referencedColumnName: 'id_commande')]
+    #[ORM\InverseJoinColumn(name: 'produit_id', referencedColumnName: 'id_produit')]
+    #[ORM\ManyToMany(targetEntity: 'LafleurProduits', inversedBy: 'commande')]
     private $produit = array();
 
     /**

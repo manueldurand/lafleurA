@@ -7,32 +7,32 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * LafleurLots
  *
- * @ORM\Table(name="lafleur_lots")
- * @ORM\Entity
  */
+#[ORM\Table(name: 'lafleur_lots')]
+#[ORM\Entity]
 class LafleurLots
 {
     /**
      * @var int
      *
-     * @ORM\Column(name="id_lot", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
+    #[ORM\Column(name: 'id_lot', type: 'integer', nullable: false)]
+    #[ORM\Id]
+    #[ORM\GeneratedValue(strategy: 'IDENTITY')]
     private $idLot;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="nom_lot", type="string", length=45, nullable=false)
      */
+    #[ORM\Column(name: 'nom_lot', type: 'string', length: 45, nullable: false)]
     private $nomLot;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="quantite", type="integer", nullable=false)
      */
+    #[ORM\Column(name: 'quantite', type: 'integer', nullable: false)]
     private $quantite;
 
     public function getIdLot(): ?int

@@ -9,32 +9,32 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * LafleurCategories
  *
- * @ORM\Table(name="lafleur_categories")
- * @ORM\Entity
  */
+#[ORM\Table(name: 'lafleur_categories')]
+#[ORM\Entity]
 class LafleurCategories
 {
     /**
      * @var int
      *
-     * @ORM\Column(name="id_categories", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
+    #[ORM\Column(name: 'id_categories', type: 'integer', nullable: false)]
+    #[ORM\Id]
+    #[ORM\GeneratedValue(strategy: 'IDENTITY')]
     private $idCategories;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="libelle", type="string", length=45, nullable=false)
      */
+    #[ORM\Column(name: 'libelle', type: 'string', length: 45, nullable: false)]
     private $libelle;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="LafleurProduits", mappedBy="categories")
      */
+    #[ORM\ManyToMany(targetEntity: 'LafleurProduits', mappedBy: 'categories')]
     private $produit = array();
 
     /**

@@ -7,32 +7,32 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * LafleurTypePlante
  *
- * @ORM\Table(name="lafleur_type_plante")
- * @ORM\Entity
  */
+#[ORM\Table(name: 'lafleur_type_plante')]
+#[ORM\Entity]
 class LafleurTypePlante
 {
     /**
      * @var int
      *
-     * @ORM\Column(name="id_type_plante", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
+    #[ORM\Column(name: 'id_type_plante', type: 'integer', nullable: false)]
+    #[ORM\Id]
+    #[ORM\GeneratedValue(strategy: 'IDENTITY')]
     private $idTypePlante;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="nom_plante", type="string", length=45, nullable=false)
      */
+    #[ORM\Column(name: 'nom_plante', type: 'string', length: 45, nullable: false)]
     private $nomPlante;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="description", type="string", length=255, nullable=true)
      */
+    #[ORM\Column(name: 'description', type: 'string', length: 255, nullable: true)]
     private $description;
 
     public function getIdTypePlante(): ?int
