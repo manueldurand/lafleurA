@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}LafleurClients{% endblock %}
+
+{% block body %}
+    <h1>LafleurClients</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>IdClient</th>
+                <td>{{ lafleur_client.idClient }}</td>
+            </tr>
+            <tr>
+                <th>NomClient</th>
+                <td>{{ lafleur_client.nomClient }}</td>
+            </tr>
+            <tr>
+                <th>PrenomClient</th>
+                <td>{{ lafleur_client.prenomClient }}</td>
+            </tr>
+            <tr>
+                <th>EmailClient</th>
+                <td>{{ lafleur_client.emailClient }}</td>
+            </tr>
+            <tr>
+                <th>MotDePasse</th>
+                <td>{{ lafleur_client.motDePasse }}</td>
+            </tr>
+            <tr>
+                <th>Telephone</th>
+                <td>{{ lafleur_client.telephone }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_lafleur_clients_index') }}">back to list</a>
+
+    <a href="{{ path('app_lafleur_clients_edit', {'idClient': lafleur_client.idClient}) }}">edit</a>
+
+    {{ include('lafleur_clients/_delete_form.html.twig') }}
+{% endblock %}

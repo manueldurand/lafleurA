@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit LafleurClients{% endblock %}
+
+{% block body %}
+    <h1>Edit LafleurClients</h1>
+
+    {{ include('lafleur_clients/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_lafleur_clients_index') }}">back to list</a>
+
+    {{ include('lafleur_clients/_delete_form.html.twig') }}
+{% endblock %}

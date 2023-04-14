@@ -21,7 +21,7 @@ class AppFixtures extends Fixture
     const ADMINS = [
         [User::GENDERS['Monsieur'], "Admin", "Test", "admin@lafleur.net", "admin"],
         [User::GENDERS['Monsieur'], "Cholet", "Guillaume", "guillaume@lafleur.net", "guillaume"],
-        [User::GENDERS['Monsieur'], "Cholet", "Sabine", "sabine@lafleur.net", "sabine"],
+        [User::GENDERS['Madame'], "Cholet", "Sabine", "sabine@lafleur.net", "sabine"],
     ];
 
     private UserPasswordHasherInterface $passwordHasher;

@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}LafleurClients index{% endblock %}
+
+{% block body %}
+    <h1>LafleurClients index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>IdClient</th>
+                <th>NomClient</th>
+                <th>PrenomClient</th>
+                <th>EmailClient</th>
+                <th>MotDePasse</th>
+                <th>Telephone</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for lafleur_client in lafleur_clients %}
+            <tr>
+                <td>{{ lafleur_client.idClient }}</td>
+                <td>{{ lafleur_client.nomClient }}</td>
+                <td>{{ lafleur_client.prenomClient }}</td>
+                <td>{{ lafleur_client.emailClient }}</td>
+                <td>{{ lafleur_client.motDePasse }}</td>
+                <td>{{ lafleur_client.telephone }}</td>
+                <td>
+                    <a href="{{ path('app_lafleur_clients_show', {'idClient': lafleur_client.idClient}) }}">show</a>
+                    <a href="{{ path('app_lafleur_clients_edit', {'idClient': lafleur_client.idClient}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_lafleur_clients_new') }}">Create new</a>
+{% endblock %}

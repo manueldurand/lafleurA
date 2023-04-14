@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New LafleurClients{% endblock %}
+
+{% block body %}
+    <h1>Create new LafleurClients</h1>
+
+    {{ include('lafleur_clients/_form.html.twig') }}
+
+    <a href="{{ path('app_lafleur_clients_index') }}">back to list</a>
+{% endblock %}
